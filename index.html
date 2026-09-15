@@ -319,8 +319,8 @@
         
         <div class="music-player">
             <span class="music-icon">🎵</span>
-            <audio id="audioPlayer" controls>
-                <source src="https://drive.google.com/uc?export=download&id=1fIdsrw74SDFoF4LMjHvk3gQ3TMXwyVyL" type="audio/mpeg">
+            <audio id="audioPlayer" controls crossorigin="anonymous">
+                <source src="https://drive.google.com/file/d/1fIdsrw74SDFoF4LMjHvk3gQ3TMXwyVyL/view?usp=drivesdk" type="audio/mpeg">
                 Seu navegador não suporta o elemento de áudio.
             </audio>
         </div>
@@ -342,7 +342,7 @@
         let lastRoseTime = 0;
         document.addEventListener('mousemove', (e) => {
             const now = Date.now();
-            if (now - lastRoseTime < 50) return; // Limitar para não criar muitas rosas
+            if (now - lastRoseTime < 50) return;
             lastRoseTime = now;
 
             const rose = document.createElement('div');
