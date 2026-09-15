@@ -53,6 +53,36 @@
             letter-spacing: 2px;
         }
 
+        .music-player {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(139, 0, 80, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .music-player audio {
+            width: 100%;
+            max-width: 300px;
+            height: 40px;
+            background: rgba(212, 165, 212, 0.1);
+            border-radius: 5px;
+            accent-color: #d4a5d4;
+        }
+
+        .music-icon {
+            font-size: 24px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
         .photo-container {
             position: relative;
             margin: 30px 0;
@@ -183,6 +213,14 @@
     <div class="container">
         <h1>Pokinha, meu amor</h1>
         
+        <div class="music-player">
+            <span class="music-icon">🎵</span>
+            <audio id="audioPlayer" controls loop>
+                <source src="https://lh3.googleusercontent.com/d/1fIdsrw74SDFoF4LMjHvk3gQ3TMXwyVyL" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+        
         <div class="photo-container" id="photoContainer">
             <img id="photoImg" src="https://lh3.googleusercontent.com/d/1Fk6QQmt_KI9kJ9fg8ddWWtSsNN5CQeyN=s220?authuser=0" alt="Pokinha">
         </div>
@@ -194,6 +232,12 @@
 
     <script>
         const photoContainer = document.getElementById('photoContainer');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        // Tentar tocar a música automaticamente
+        audioPlayer.play().catch(function(error) {
+            console.log("Autoplay foi bloqueado. Usuário precisa interagir primeiro.");
+        });
 
         // Rosas flutuando com movimento do mouse
         document.addEventListener('mousemove', (e) => {
