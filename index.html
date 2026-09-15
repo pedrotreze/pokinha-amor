@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokinha, meu amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a0f1a 0%, #2d1b2d 50%, #3d1f3d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(20, 10, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(139, 0, 80, 0.3);
+            border: 2px solid rgba(139, 0, 80, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #d4a5d4;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(212, 165, 212, 0.5);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .photo-container {
+            position: relative;
+            margin: 30px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .photo-container:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-container img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(139, 0, 80, 0.4);
+            border: 3px solid rgba(212, 165, 212, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .photo-container:hover img {
+            box-shadow: 0 15px 50px rgba(220, 20, 60, 0.6);
+            border: 3px solid rgba(220, 20, 60, 0.5);
+        }
+
+        .photo-container:hover::before {
+            opacity: 1;
+        }
+
+        .photo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            background: radial-gradient(circle at 30% 30%, rgba(220, 20, 60, 0.3) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .text {
+            color: #e0b0e0;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-top: 30px;
+            text-align: justify;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .rose {
+            position: fixed;
+            pointer-events: none;
+            font-size: 24px;
+            animation: float-rose 3s ease-in forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes float-rose {
+            0% {
+                opacity: 0.8;
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) translateX(var(--drift)) scale(0.3);
+            }
+        }
+
+        .rose-hover {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+            animation: float-rose-hover 2.5s ease-in forwards;
+        }
+
+        @keyframes float-rose-hover {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-80px) scale(0.2);
+            }
+        }
+
+        /* Efeito de brilho ao fundo */
+        .glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .glow-1 {
+            width: 300px;
+            height: 300px;
+            background: #8b0050;
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .glow-2 {
+            width: 300px;
+            height: 300px;
+            background: #d4a5d4;
+            bottom: -100px;
+            right: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(50px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <div class="container">
+        <h1>Pokinha, meu amor</h1>
+        
+        <div class="photo-container" id="photoContainer">
+            <img id="photoImg" src="https://via.placeholder.com/400x500?text=Sua+foto+aqui" alt="Pokinha">
+        </div>
+
+        <p class="text">
+            Pokinha, eu gostaria que o mundo te enxergasse da maneira que eu te vejo todos os dias. Uma mulher forte, inteligente, linda, simpática, extremamente vaidosa, amorosa, gostosa, com um senso estético absurdo, referências incríveis para todos os momentos e um gosto musical impecável.
+        </p>
+    </div>
+
+    <script>
+        const photoContainer = document.getElementById('photoContainer');
+
+        // Rosas flutuando com movimento do mouse
+        document.addEventListener('mousemove', (e) => {
+            const rose = document.createElement('div');
+            rose.className = 'rose';
+            rose.textContent = '🌹';
+            rose.style.left = e.clientX + 'px';
+            rose.style.top = e.clientY + 'px';
+            
+            const drift = (Math.random() - 0.5) * 100;
+            rose.style.setProperty('--drift', drift + 'px');
+            
+            document.body.appendChild(rose);
+            
+            setTimeout(() => rose.remove(), 3000);
+        });
+
+        // Rosas vermelhas ao passar sobre a foto
+        photoContainer.addEventListener('mousemove', (e) => {
+            const rect = photoContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const rose = document.createElement('div');
+            rose.className = 'rose-hover';
+            rose.textContent = '❤️';
+            rose.style.left = x + 'px';
+            rose.style.top = y + 'px';
+            
+            photoContainer.appendChild(rose);
+            
+            setTimeout(() => rose.remove(), 2500);
+        });
+
+        // Função para atualizar a foto
+        function updatePhoto(imageUrl) {
+            document.getElementById('photoImg').src = imageUrl;
+        }
+
+        // Se você tiver uma URL de foto, descomente e substitua:
+        // updatePhoto('https://sua-url-da-foto-aqui.jpg');
+    </script>
+</body>
+</html>
