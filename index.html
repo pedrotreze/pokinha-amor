@@ -17,8 +17,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* Corações fofos flutuando ao fundo */
+        .floating-hearts {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            animation: float-hearts 8s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes float-hearts {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(10deg); }
         }
 
         .container {
@@ -31,6 +46,8 @@
             border: 2px solid rgba(139, 0, 80, 0.2);
             text-align: center;
             animation: fadeIn 1s ease-in;
+            position: relative;
+            z-index: 10;
         }
 
         @keyframes fadeIn {
@@ -45,32 +62,45 @@
         }
 
         h1 {
-            color: #d4a5d4;
-            font-size: 2.5em;
+            color: #ff69b4;
+            font-size: 2.8em;
             margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(212, 165, 212, 0.5);
-            font-weight: 300;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.8), 0 0 60px rgba(220, 20, 60, 0.6);
+            font-weight: bold;
             letter-spacing: 2px;
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { 
+                text-shadow: 0 0 30px rgba(255, 105, 180, 0.8), 0 0 60px rgba(220, 20, 60, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(255, 105, 180, 1), 0 0 80px rgba(220, 20, 60, 0.8);
+                transform: scale(1.05);
+            }
         }
 
         .music-player {
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(139, 0, 80, 0.2);
+            background: rgba(255, 105, 180, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
             justify-content: center;
+            border: 2px solid rgba(255, 105, 180, 0.3);
         }
 
         .music-player audio {
             width: 100%;
             max-width: 300px;
             height: 40px;
-            background: rgba(212, 165, 212, 0.1);
+            background: rgba(255, 105, 180, 0.1);
             border-radius: 5px;
-            accent-color: #d4a5d4;
+            accent-color: #ff69b4;
         }
 
         .music-icon {
@@ -79,8 +109,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
         }
 
         .photo-container {
@@ -91,21 +121,21 @@
         }
 
         .photo-container:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .photo-container img {
             width: 100%;
             max-width: 400px;
             border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(139, 0, 80, 0.4);
-            border: 3px solid rgba(212, 165, 212, 0.3);
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            border: 3px solid rgba(255, 105, 180, 0.5);
             transition: all 0.3s ease;
         }
 
         .photo-container:hover img {
-            box-shadow: 0 15px 50px rgba(220, 20, 60, 0.6);
-            border: 3px solid rgba(220, 20, 60, 0.5);
+            box-shadow: 0 15px 50px rgba(255, 105, 180, 0.8), 0 0 30px rgba(220, 20, 60, 0.6);
+            border: 3px solid rgba(255, 105, 180, 0.8);
         }
 
         .photo-container:hover::before {
@@ -120,20 +150,33 @@
             width: 100%;
             height: 100%;
             border-radius: 15px;
-            background: radial-gradient(circle at 30% 30%, rgba(220, 20, 60, 0.3) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 30%, rgba(255, 105, 180, 0.4) 0%, transparent 50%);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
         }
 
         .text {
-            color: #e0b0e0;
-            font-size: 1.1em;
+            color: #ffb6d9;
+            font-size: 1.2em;
             line-height: 1.8;
             margin-top: 30px;
             text-align: justify;
-            font-weight: 300;
+            font-weight: 500;
             letter-spacing: 0.5px;
+            animation: float-text 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.6), 0 0 40px rgba(220, 20, 60, 0.4);
+        }
+
+        @keyframes float-text {
+            0%, 100% { 
+                transform: translateY(0px);
+                text-shadow: 0 0 20px rgba(255, 105, 180, 0.6), 0 0 40px rgba(220, 20, 60, 0.4);
+            }
+            50% { 
+                transform: translateY(-10px);
+                text-shadow: 0 0 30px rgba(255, 105, 180, 0.9), 0 0 60px rgba(220, 20, 60, 0.6);
+            }
         }
 
         .rose {
@@ -178,14 +221,14 @@
             position: fixed;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.15;
+            opacity: 0.2;
             pointer-events: none;
         }
 
         .glow-1 {
             width: 300px;
             height: 300px;
-            background: #8b0050;
+            background: #ff69b4;
             top: -100px;
             left: -100px;
             animation: float 8s ease-in-out infinite;
@@ -194,7 +237,7 @@
         .glow-2 {
             width: 300px;
             height: 300px;
-            background: #d4a5d4;
+            background: #ffb6d9;
             bottom: -100px;
             right: -100px;
             animation: float 10s ease-in-out infinite reverse;
@@ -204,14 +247,43 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(50px); }
         }
+
+        /* Corações decorativos nas laterais */
+        .heart-decoration {
+            position: fixed;
+            font-size: 50px;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: float-decoration 6s ease-in-out infinite;
+        }
+
+        .heart-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .heart-2 { top: 20%; right: 5%; animation-delay: 1s; }
+        .heart-3 { top: 40%; left: 3%; animation-delay: 2s; }
+        .heart-4 { top: 60%; right: 3%; animation-delay: 1.5s; }
+        .heart-5 { top: 80%; left: 8%; animation-delay: 2.5s; }
+        .heart-6 { top: 70%; right: 7%; animation-delay: 0.5s; }
+
+        @keyframes float-decoration {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
     </style>
 </head>
 <body>
+    <!-- Corações decorativos flutuando -->
+    <div class="heart-decoration heart-1">💕</div>
+    <div class="heart-decoration heart-2">💖</div>
+    <div class="heart-decoration heart-3">💗</div>
+    <div class="heart-decoration heart-4">💝</div>
+    <div class="heart-decoration heart-5">💞</div>
+    <div class="heart-decoration heart-6">💘</div>
+
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
 
     <div class="container">
-        <h1>Pokinha, meu amor</h1>
+        <h1>💖 Pokinha, meu amor 💖</h1>
         
         <div class="music-player">
             <span class="music-icon">🎵</span>
@@ -226,7 +298,7 @@
         </div>
 
         <p class="text">
-            Pokinha, eu gostaria que o mundo te enxergasse da maneira que eu te vejo todos os dias. Uma mulher forte, inteligente, linda, simpática, extremamente vaidosa, amorosa, gostosa, com um senso estético absurdo, referências incríveis para todos os momentos e um gosto musical impecável.
+            💕 Pokinha, eu gostaria que o mundo te enxergasse da maneira que eu te vejo todos os dias. Uma mulher forte, inteligente, linda, simpática, extremamente vaidosa, amorosa, gostosa, com um senso estético absurdo, referências incríveis para todos os momentos e um gosto musical impecável. 💕
         </p>
     </div>
 
@@ -255,7 +327,7 @@
             setTimeout(() => rose.remove(), 3000);
         });
 
-        // Rosas vermelhas ao passar sobre a foto
+        // Corações vermelhos ao passar sobre a foto
         photoContainer.addEventListener('mousemove', (e) => {
             const rect = photoContainer.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -263,7 +335,8 @@
             
             const rose = document.createElement('div');
             rose.className = 'rose-hover';
-            rose.textContent = '❤️';
+            const hearts = ['❤️', '💕', '💖', '💗', '💝', '💞', '💘'];
+            rose.textContent = hearts[Math.floor(Math.random() * hearts.length)];
             rose.style.left = x + 'px';
             rose.style.top = y + 'px';
             
@@ -271,6 +344,24 @@
             
             setTimeout(() => rose.remove(), 2500);
         });
+
+        // Gerar corações fofos flutuando aleatoriamente
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-hearts';
+            const hearts = ['💕', '💖', '💗', '💝', '💞', '💘', '❤️'];
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        // Criar corações a cada 2 segundos
+        setInterval(createFloatingHeart, 2000);
     </script>
 </body>
 </html>
